@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "692404755052",
+    "project_id": "gps1-34881",
+    "storage_bucket": "gps1-34881.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:692404755052:android:fdd1317262acd90bc09649",
+        "android_client_info": {
+          "package_name": "org.techtown.tab2"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "692404755052-d3o2sdjc2qt0pprqnulufneqo5mdr7s9.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD_K83rvbqdsgIUu4xU5YjDYTDS7_f1lA8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "692404755052-d3o2sdjc2qt0pprqnulufneqo5mdr7s9.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
