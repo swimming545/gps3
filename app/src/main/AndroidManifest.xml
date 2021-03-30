@@ -2,10 +2,6 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="org.techtown.tab2">
 
-    <uses-permission android:name="android.permission.INTERNET"/>
-    <uses-permission android:name="com.google.android.providers.gsf.permission.READ_GSERVICES"/>
-    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
-    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
 
     <application
         android:allowBackup="true"
@@ -15,9 +11,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MyTab2">
 
+        <uses-library
+            android:name="org.apache.http.legacy"
+            android:required="false" />
         <meta-data
             android:name="com.google.android.geo.API_KEY"
-            android:value="AIzaSyCdg-NBx2HeSDCSs8yvpf80ogBAo4ehXjI" />
+            android:value="AIzaSyADhqSbTtdgaTGDVn_KgaDg02wHLD-0u4M"/>
 
         <activity android:name=".MainActivity">
             <intent-filter>

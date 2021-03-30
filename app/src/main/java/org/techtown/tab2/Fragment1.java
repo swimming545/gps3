@@ -18,6 +18,8 @@ import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapView;
 import com.google.android.gms.maps.MapsInitializer;
 import com.google.android.gms.maps.OnMapReadyCallback;
+import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.CameraPosition;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
@@ -26,8 +28,7 @@ import static android.content.ContentValues.TAG;
 
 public class Fragment1 extends Fragment
         implements OnMapReadyCallback {
-    View rootView;
-    MapView mapView;
+    private MapView mapView = null;
 
     public Fragment1() {
     }
@@ -39,21 +40,19 @@ public class Fragment1 extends Fragment
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
-        setHasOptionsMenu(true);
         super.onCreate(savedInstanceState);
+
     }
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        ViewGroup rootView = (ViewGroup)inflater.inflate(R.layout.fragment1,container,false);
-        mapView = (MapView) rootView.findViewById(R.id.fragment_main_mv);
+        View layout = inflater.inflate(R.layout.fragment1, container, false);
 
-        mapView.onCreate(savedInstanceState);
-
+        mapView = (MapView)layout.findViewById(R.id.map);
         mapView.getMapAsync(this);
 
-        return rootView;
+        return layout;
     }
 
     @Override
@@ -63,14 +62,13 @@ public class Fragment1 extends Fragment
     }
 
     @Override
-    public void onStop () {
+    public void onStop() {
         super.onStop();
         mapView.onStop();
-
     }
 
     @Override
-    public void onSaveInstanceState (@Nullable Bundle outState){
+    public void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
         mapView.onSaveInstanceState(outState);
     }
@@ -82,31 +80,55 @@ public class Fragment1 extends Fragment
     }
 
     @Override
+    public void onPause() {
+        super.onPause();
+        mapView.onPause();
+    }
+
+    @Override
+    public void onLowMemory() {
+        super.onLowMemory();
+        mapView.onLowMemory();
+    }
+
+    @Override
     public void onDestroy() {
         super.onDestroy();
         mapView.onLowMemory();
     }
 
+
+
+    @Override
+    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+
+        //액티비티가 처음 생성될 때 실행되는 함수
+
+        if(mapView != null)
+        {
+            mapView.onCreate(savedInstanceState);
+        }
+    }
+
     @Override
     public void onMapReady(GoogleMap googleMap) {
+        LatLng SEOUL = new LatLng(37.56, 126.97);
 
-        //마커찍기(위도,경도)
-        LatLng solnae = new LatLng(35.869253, 127.129006);
+        MarkerOptions markerOptions = new MarkerOptions();
 
-        //마커 옵션
-        MarkerOptions marker = new MarkerOptions();
-        marker.position(solnae); //마커 위치
-        marker.title("솔내청소년수련관");
-        marker.snippet("전주시 덕진구 송천1동 동부대로 1079");
+        markerOptions.position(SEOUL);
 
-        //맵에 마커표시, 인포윈도우 보여줌
-        googleMap.addMarker(marker).showInfoWindow();
+        markerOptions.title("서울");
 
-        //인포윈도우 클릭
-        //googleMap.setOnInfoWindowClickListener(this);
+        markerOptions.snippet("수도");
 
-        //맵뷰 카메라위치, 줌 설정
-        googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(solnae, 13));
+        googleMap.addMarker(markerOptions);
+
+        googleMap.moveCamera(CameraUpdateFactory.newLatLng(SEOUL));
+
+        googleMap.animateCamera(CameraUpdateFactory.zoomTo(13));
     }
+
     }
 

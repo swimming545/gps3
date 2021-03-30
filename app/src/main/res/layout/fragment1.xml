@@ -4,8 +4,11 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
+
     <com.google.android.gms.maps.MapView
-        android:id="@+id/fragment_main_mv"
+        android:id="@+id/map"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent"
+        android:name = "com.google.adroid.gms.maps.MapFragment"/>
+
 </LinearLayout>
